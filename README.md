@@ -1,7 +1,7 @@
 # Interview QA Test
 ## Prerequisite
 
-- Create project by using <b>Cypress</b> or <b>Playwright</b> framework.
+- Create project by using <b>Cucumber</b> framework.
 - Using a link https://qa-practice.razvanvancea.ro/auth_ecommerce.html to implement test frontend example by following questions.
 - <b>Docker Desktop</b> to run container by execute the following CLI <br/>
 command `docker run -d --rm --name qa-practice-api -p8887:8081 rvancea/qa-practice-api:latest`
@@ -53,4 +53,5 @@ command `docker run -d --rm --name qa-practice-api -p8887:8081 rvancea/qa-practi
 
 <br/>
 
-- Explain the report result & code review on interview session.
+- Explain the report result(cucumber-html-reporter library) & code review on interview session.
+- Deploy your project in your GitHub and Demo on `GitHub Action` for review.(`Give special consideration.`)
