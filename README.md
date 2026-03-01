@@ -16,8 +16,8 @@ command `docker run -d --rm --name qa-practice-api -p8887:8081 rvancea/qa-practi
 
 - Implement positive test cases in <b>step2</b> by following test cases as below:
   - Select Items correctly by following
-    1. Apple iPhone 13, 128GB, Blue <b>2 units</b>.
-    2. Huawei Mate 20 Lite, 64GB, Black <b>3 units</b>.      
+    1. Dior J'adore <b> 2 units</b>.
+    2. Gucci Bloom Eau de <b> 3 units</b>.
   - Implement validate the <b>Total</b> cost test case by using price x quantity any of both items and summary result must be correctly.
   - Trigger Proceed to checkout button
   ![Example Users List screen](src/assets/step2_requirement.png)
