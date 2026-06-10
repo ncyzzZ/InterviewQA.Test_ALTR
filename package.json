@@ -1,0 +1,18 @@
+{
+    "name": "interview-qa-test",
+    "version": "1.0.0",
+    "description": "QA Interview Test using Playwright + Cucumber",
+    "scripts": {
+          "test": "cucumber-js",
+          "test:ui": "cucumber-js \"features/ui/**/*.feature\"",
+          "test:api": "cucumber-js \"features/api/**/*.feature\"",
+          "report": "node reporter.js"
+    },
+    "dependencies": {
+          "@cucumber/cucumber": "^10.3.1",
+          "@playwright/test": "^1.44.0",
+          "playwright": "^1.44.0",
+          "axios": "^1.6.8",
+          "cucumber-html-reporter": "^6.0.0"
+    }
+}
