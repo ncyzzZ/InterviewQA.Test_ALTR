@@ -27,11 +27,11 @@ jobs:
         run: npx playwright install chromium --with-deps
 
       - name: Create reports directory
-        run: mkdir -p reports
+        run: mkdir -p reports/json
 
       - name: Run UI Tests
-        run: npx cucumber-js "features/ui/**/*.feature" --format json:reports/cucumber_report.json
-        continue-on-error: true
+        run: npx cucumber-js "features/ui/**/*.feature" --format json:reports/json/cucumber_report.json
+        continue-on-error: true  
 
       - name: Generate HTML Report
         run: node reporter.js
