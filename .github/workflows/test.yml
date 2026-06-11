@@ -31,7 +31,7 @@ jobs:
 
       - name: Run UI Tests
         run: npx cucumber-js "features/ui/**/*.feature" --format json:reports/json/cucumber_report.json
-        continue-on-error: true  
+        continue-on-error: true
 
       - name: Generate HTML Report
         run: node reporter.js
@@ -43,3 +43,56 @@ jobs:
         with:
           name: cucumber-html-report
           path: reports/cucumber_report.html
+
+  test-api:
+    name: API Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Start API container
+        run: docker run -d --rm --name qa-practice-api -p 8887:8081 rvancea/qa-practice-api:latest
+
+      - name: Wait for API to be ready
+        run: |
+          echo "Waiting for API to be ready..."
+          for i in {1..30}; do
+            if curl -s http://localhost:8887/api/v1/employees > /dev/null 2>&1; then
+              echo "API is ready!"
+              break
+            fi
+            echo "Attempt $i: API not ready yet, waiting 2s..."
+            sleep 2
+          done
+
+      - name: Create reports directory
+        run: mkdir -p reports/json
+
+      - name: Run API Tests
+        run: npx cucumber-js "features/api/**/*.feature" --format json:reports/json/api_report.json
+        continue-on-error: true
+
+      - name: Generate HTML Report
+        run: node reporter.js
+        if: always()
+
+      - name: Upload API test report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cucumber-api-html-report
+          path: reports/cucumber_report.html
+
+      - name: Stop API container
+        if: always()
+        run: docker stop qa-practice-api || true
